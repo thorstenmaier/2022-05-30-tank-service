@@ -17,4 +17,8 @@ public class TankLevelRepository {
 	public void addTankLevel(long tankId, long level) {
 		tankLevels.put(tankId, level);
 	}
+
+	public void setLevel(long tankId, long newLevel) {
+		tankLevels.put(tankId, newLevel);
+	}
 }
