@@ -1,13 +1,15 @@
 package com.trivadis.controller;
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.trivadis.dto.TankDto;
 import com.trivadis.repository.TankCapacityRepository;
 import com.trivadis.repository.TankLevelRepository;
 import com.trivadis.service.RelativeTankLevelService;
 
-@Component
+//@Component
+@RestController
 public class TankController {
 
 	private RelativeTankLevelService relativeTankLevelService;
@@ -21,8 +23,9 @@ public class TankController {
 		this.tankLevelRepository = tankLevelRepository;
 	}
 
-	public TankDto getTankDetails(long tankId) {
-
+	@GetMapping("/")
+	public TankDto getTankDetails() {
+		long tankId = 1l;
 		TankDto tankDto = new TankDto();
 		tankDto.setTankId(tankId);
 		tankDto.setLevel(tankLevelRepository.getLevel(tankId));
