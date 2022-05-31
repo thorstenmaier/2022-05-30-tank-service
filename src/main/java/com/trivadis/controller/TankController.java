@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trivadis.dto.TankDto;
 import com.trivadis.repository.TankCapacityRepository;
 import com.trivadis.repository.TankLevelRepository;
+import com.trivadis.service.GasPriceService;
 import com.trivadis.service.RelativeTankLevelService;
 
 //@Component
@@ -19,12 +20,15 @@ public class TankController {
 	private RelativeTankLevelService relativeTankLevelService;
 	private TankCapacityRepository tankCapacityRepository;
 	private TankLevelRepository tankLevelRepository;
+	private GasPriceService gasPriceService;
 
 	public TankController(RelativeTankLevelService relativeTankLevelService,
-			TankCapacityRepository tankCapacityRepository, TankLevelRepository tankLevelRepository) {
+			TankCapacityRepository tankCapacityRepository, TankLevelRepository tankLevelRepository,
+			GasPriceService gasPriceService) {
 		this.relativeTankLevelService = relativeTankLevelService;
 		this.tankCapacityRepository = tankCapacityRepository;
 		this.tankLevelRepository = tankLevelRepository;
+		this.gasPriceService = gasPriceService;
 	}
 
 	@GetMapping("/tanks/{id}")
@@ -34,6 +38,7 @@ public class TankController {
 		tankDto.setLevel(tankLevelRepository.getLevel(tankId));
 		tankDto.setCapacity(tankCapacityRepository.getCapacity(tankId));
 		tankDto.setRelativeLevel(relativeTankLevelService.getRelativeTankLevel(tankId));
+		tankDto.setCurrentValueInEur(gasPriceService.getCurrentGasPricePerUnit() * tankDto.getLevel());
 		return tankDto;
 	}
 

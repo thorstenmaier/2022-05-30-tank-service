@@ -7,6 +7,7 @@ public class TankDto {
 	private long capacity;
 	private long level;
 	private double relativeLevel;
+	private double currentValueInEur;
 
 	public long getTankId() {
 		return tankId;
@@ -38,6 +39,14 @@ public class TankDto {
 
 	public void setRelativeLevel(double relativeLevel) {
 		this.relativeLevel = relativeLevel;
+	}
+
+	public double getCurrentValueInEur() {
+		return currentValueInEur;
+	}
+
+	public void setCurrentValueInEur(double currentValueInEur) {
+		this.currentValueInEur = currentValueInEur;
 	}
 
 }
