@@ -38,7 +38,7 @@ public class TankController {
 		tankDto.setLevel(tankLevelRepository.getLevel(tankId));
 		tankDto.setCapacity(tankCapacityRepository.getCapacity(tankId));
 		tankDto.setRelativeLevel(relativeTankLevelService.getRelativeTankLevel(tankId));
-		tankDto.setCurrentValueInEur(gasPriceService.getCurrentGasPricePerUnit() * tankDto.getLevel());
+		tankDto.setCurrentValueInEur(gasPriceService.getCurrentPricePerUnit() * tankDto.getLevel());
 		return tankDto;
 	}
 

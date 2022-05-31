@@ -1,12 +1,11 @@
 package com.trivadis.service;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@Component
-public class GasPriceService {
+@FeignClient(url = "http://localhost:8080", value = "gasPriceService")
+public interface GasPriceService {
 
-	public double getCurrentGasPricePerUnit() {
-		return new RestTemplate().getForObject("http://localhost:8080/pricePerUnit", Double.class);
-	}
+	@GetMapping("/pricePerUnit")
+	public double getCurrentPricePerUnit();
 }
